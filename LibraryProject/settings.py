@@ -20,7 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = 'django-insecure-*a5wb9@_6)_pl0&41!maz0a^(5$1xg^a@lfjyezaq^p@8^=k&0'
+=======
+SECRET_KEY = 'django-insecure-nhq##b4*aqgs!lxea!o_-558z!x24aygj@x1zxhca_t9!f1wet'
+>>>>>>> Initial commit for Django setup with LibraryProject and bookshelf app
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
 ]
 
+=======
+    'bookshelf',
+]
+
+
+
+>>>>>>> Initial commit for Django setup with LibraryProject and bookshelf app
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -121,3 +133,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
+=======
+
+>>>>>>> Initial commit for Django setup with LibraryProject and bookshelf app
