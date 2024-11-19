@@ -2,19 +2,17 @@ from relationship_app.models import Author, Book, Library, Librarian
 
 # Query all books by a specific author
 def query_books_by_author(author_name):
-    books = Book.objects.filter(author__name=author_name)
+    books = Book.objects.filter(author__name__icontains=author_name)
     return books
 
 # List all books in a library
 def list_books_in_library(library_name):
-    library = Library.objects.get(name=library_name)
-    books = library.books.all()
+    books = Book.objects.filter(library__name__icontains=library_name)
     return books
 
 # Retrieve the librarian for a library
 def retrieve_librarian_for_library(library_name):
-    library = Library.objects.get(name=library_name)
-    librarian = Librarian.objects.get(library=library)
+    librarian = Librarian.objects.filter(library__name__icontains=library_name).first()
     return librarian
 
 
@@ -33,4 +31,4 @@ if __name__ == "__main__":
     # Retrieve the librarian for "Central Library"
     print("\nLibrarian for Central Library:")
     librarian = retrieve_librarian_for_library("Central Library")
-    print(librarian.name)
+    print(librarian.name if librarian else "No librarian found")
