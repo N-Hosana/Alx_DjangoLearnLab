@@ -32,6 +32,12 @@ class UserProfile(models.Model):
         ('Admin', 'Admin'),
         ('Librarian', 'Librarian'),
         ('Member', 'Member'),
+        
+    class Meta:
+        permissions = [
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
