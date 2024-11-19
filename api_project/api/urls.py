@@ -1,11 +1,7 @@
-# api/urls.py
-from django.urls import path
-from .views import BookList
+from django.contrib import admin
+from django.urls import path, include  # Ensure `include` is imported
 
 urlpatterns = [
-    api.urls
-    rest_framework.generics.ListAPIView
-    path('books/', BookList.as_view(), name='book-list'),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path('api/', include('api.urls')),  # Ensure this line includes `api.urls`
 ]
