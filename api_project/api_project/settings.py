@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)8hc&wn8b5693@p%zr1d(=ise5n1gfiqam$(k12o09snu^levh'
+SECRET_KEY = 'django-insecure-w&)-lxazc78x@f_anh1eij+avr(k6i7xl!5i5%uce)l(iujtt('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api',
+    'api.apps.ApiConfig',
     'rest_framework.authtoken'
 ]
 
@@ -53,6 +53,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api_project.urls'
+
+#Updating DRF settings to include token authentication in the DEFAULT_AUTHENTICATION_CLASSES.
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
 
 TEMPLATES = [
     {
