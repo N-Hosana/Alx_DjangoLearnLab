@@ -33,5 +33,7 @@ class BookAPITests(APITestCase):
 
     def test_update_book(self):
         # Test updating an existing book
+        detail_url = f"/api/books/{self.client.login}/"
         detail_url = f"/api/books/{self.book.id}/"
         updated_data = {"title": "Updated Book", "
+     
