@@ -67,3 +67,13 @@ def user_feed(request):
 
     serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
+
+def get_notifications(request):
+    notifications = request.user.notifications.all().order_by('-timestamp')
+    data = [{
+        'actor': n.actor.username,
+        'verb': n.verb,
+        'timestamp': n.timestamp,
+        'is_read': n.is_read
+    } for n in notifications]
+    return Response(data)
