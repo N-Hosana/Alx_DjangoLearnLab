@@ -3,6 +3,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .models import User
+from rest_framework import generics, permissions
+from .models import CustomUser
+from .serializers import UserSerializer
+
+class UserListView(generics.ListAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
