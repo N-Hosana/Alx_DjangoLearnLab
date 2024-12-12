@@ -1,13 +1,41 @@
 from django.urls import path
+from .views import PostByTagListView
 from . import views
+from .views import (
+    PostListView,
+    PostDetailView,
+    PostCreateView,
+    PostUpdateView,
+    PostDeleteView,
+    PostByTagListView,
+    CommentDetailView,
+    CommentCreateView,
+    CommentUpdateView,
+    CommentDeleteView,
+    CustomLoginView,
+    CustomLogoutView,
+)
 
-app_name = 'blog'
-
+# Combined urlpatterns list
 urlpatterns = [
-    path('', views.PostListView.as_view(), name='post_list'),
-    path('post/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
-    path('post/new/', views.PostCreateView.as_view(), name='post_create'),
-    path('post/<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_update'),  # Add this line
-    path('post/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),
-     path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name='post_update'),
+    # Authentication paths
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile'),
+
+    # Blog post paths
+    path('', PostListView.as_view(), name='post-list'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
+    path('post/new/', PostCreateView.as_view(), name='post-create'),
+    path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
+    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='post-by-tag'),
+
+
+    # Comment paths
+    path('posts/<int:pk>/', CommentDetailView.as_view(), name='comment-detail'),
+    path('post/<int:pk>/comments/new/', CommentCreateView.as_view(), name='comment-create'),
+    path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-edit'),
+    path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
