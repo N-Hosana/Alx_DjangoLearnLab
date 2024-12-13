@@ -9,6 +9,7 @@ from .models import Post, Like
 from notifications.models import Notification
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
+generics.get_object_or_404(Post, pk=pk
 
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
@@ -77,3 +78,8 @@ def get_notifications(request):
         'is_read': n.is_read
     } for n in notifications]
     return Response(data)
+
+def get_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    serializer = PostSerializer(post)
+    return Response(serializer.data)
